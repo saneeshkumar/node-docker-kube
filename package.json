@@ -1,0 +1,27 @@
+{
+  "name": "node-docker-kube",
+  "version": "1.0.0",
+  "description": "Testing Node Docker and Kubernetes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saneeshkumar/node-docker-kube.git"
+  },
+  "keywords": [
+    "node",
+    "docker",
+    "kubernetes"
+  ],
+  "author": "Saneesh Kumar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saneeshkumar/node-docker-kube/issues"
+  },
+  "homepage": "https://github.com/saneeshkumar/node-docker-kube#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
