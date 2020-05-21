@@ -11,7 +11,6 @@ let users = [
         secondName: 'Edisson',
         age: 55
     },
-    ,
     {
         id:3,
         firstName: 'Dave',
