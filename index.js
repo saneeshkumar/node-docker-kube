@@ -1,13 +1,10 @@
 const express = require('express');
+const bodyParser = require('body-parser')
+const usersRoutes = require('./routes/users-route')
+
 const app = express();
+app.use(usersRoutes);
 
-app.listen(3000, function() {
+app.listen(3000, function () {
     console.log("listening on port 3000...");
-});
-
-app.get("/api/v1/users", (req, res) => {
-    return res.status(200).send({
-        success: 'true',
-        message: 'users retrieved successfully'
-      });
 });
