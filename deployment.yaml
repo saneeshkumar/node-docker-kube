@@ -3,6 +3,9 @@ kind: Deployment
 metadata:
   name: nodejs-deployment
 spec:
+  selector:
+    matchLabels:
+      app: nodejs
   replicas: 2 # tells deployment to run 2 pods matching the template
   template:
     metadata:
@@ -10,7 +13,7 @@ spec:
         app: nodejs
     spec:
       containers:
-        - name: node-server
-          image: node-server:v1
+      - name: node-server
+        image: node-server:v1
         ports:
         - containerPort: 3000
