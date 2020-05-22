@@ -28,7 +28,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Users'
+              $ref: '#/components/schemas/User'
         required: true
       responses:
         "200":
@@ -36,7 +36,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Users'
+                $ref: '#/components/schemas/NewUser'
+        "400":
+          description: Failed to create a new User object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
   /api/v1/users/{id}:
     get:
       tags:
@@ -86,6 +92,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Users'
+        "404":
+          description: Failed to update the User object since id not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
+        "400":
+          description: Failed to update the User object since required fields are
+            missing.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
     delete:
       tags:
       - Users
@@ -103,9 +122,57 @@ paths:
       responses:
         "200":
           description: User deleted successfully.
+        "404":
+          description: Failed to delete the User object since id not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StandardResponse'
 components:
   schemas:
+    NewUser:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        user:
+          $ref: '#/components/schemas/User'
+      description: array of users
+      example:
+        success: "true"
+        message: users retrieved successfully
+        user:
+          id: 1
+          firstName: John
+          secondName: Adam
+          age: 38
     Users:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+      description: array of users
+      example:
+        success: "true"
+        message: user added successfully
+        users:
+        - id: 1
+          firstName: John
+          secondName: Adam
+          age: 38
+        - id: 2
+          firstName: Thomas
+          secondName: Edisson
+          age: 55
+    User:
       required:
       - age
       - firstName
@@ -115,9 +182,29 @@ components:
       properties:
         id:
           type: integer
+          description: id of the user. Auto assigned.
+          readOnly: true
         firstName:
           type: string
+          description: First name of the user
         secondName:
           type: string
+          description: Second name of the user
         age:
           type: integer
+          description: Age of the user
+      example:
+        id: 1
+        firstName: Adam
+        secondName: John
+        age: 32
+    StandardResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        message:
+          type: string
+      example:
+        success: false
+        message: message
