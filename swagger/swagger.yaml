@@ -1,0 +1,39 @@
+openapi: 3.0.0
+info:
+  title: Users
+  description: Simple User API
+  version: "1.0"
+servers:
+- url: /
+paths:
+  /api/v1/users:
+    get:
+      tags:
+      - Users
+      summary: Get all users
+      description: Get all users
+      responses:
+        "200":
+          description: An array of users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+components:
+  schemas:
+    Users:
+      required:
+      - age
+      - firstName
+      - id
+      - secondName
+      type: object
+      properties:
+        id:
+          type: integer
+        firstName:
+          type: string
+        secondName:
+          type: string
+        age:
+          type: integer
