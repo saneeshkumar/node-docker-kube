@@ -1,7 +1,9 @@
 const users = require("../db/db").users;
+const logger = require("../config/winston");
 
 class UsersController {
     getAllUsers(req, res) {
+        logger.info("Inside getAllUsers");
         return res.status(200).send({
             success: 'true',
             message: 'users retrieved successfully',
@@ -9,6 +11,7 @@ class UsersController {
         });
     }
     getUserById(req, res) {
+        logger.info(`Inside getUserById. request parameter:`);
         const id = parseInt(req.params.id, 10);
         let userObj = null;
         users.map((user) => {
