@@ -19,6 +19,90 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Users'
+    post:
+      tags:
+      - Users
+      summary: Creates a user
+      description: Creates a user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Users'
+        required: true
+      responses:
+        "200":
+          description: Created a new User object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+  /api/v1/users/{id}:
+    get:
+      tags:
+      - Users
+      summary: Get a user by id
+      description: Get a user by id
+      parameters:
+      - name: id
+        in: path
+        description: The user id requested by user.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: A user object in Json format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+    put:
+      tags:
+      - Users
+      summary: Update a user by id
+      description: Update a user by id
+      parameters:
+      - name: id
+        in: path
+        description: The user id requested by user.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Users'
+        required: true
+      responses:
+        "200":
+          description: Updated the User object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+    delete:
+      tags:
+      - Users
+      summary: Deletes a user by id
+      description: Deletes a user by id
+      parameters:
+      - name: id
+        in: path
+        description: The user id requested by user to delete.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: User deleted successfully.
 components:
   schemas:
     Users:
